@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color:aquamarine;
 }
 
 .App-link {
@@ -35,4 +35,64 @@
   to {
     transform: rotate(360deg);
   }
+}
+/* App.css */
+
+/* App.css */
+
+.logo {
+  width: 50px;
+  height: 50px; /* Ensure the height matches the width for a perfect circle */
+  border-radius: 50%; /* This creates a circular shape */
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 70px;
+}
+
+.text-content {
+  max-width: 60%;
+}
+
+.image-content img {
+  border-radius: 10px;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 70px;
+}
+
+.text-content {
+  max-width: 60%;
+}
+
+.image-content {
+  position: relative;
+  display: inline-block;
+}
+
+.image-content img {
+  border-radius: 10px;
+}
+
+.image-content:hover .overlay-text {
+  opacity: 1;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }

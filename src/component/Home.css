@@ -1,0 +1,138 @@
+
+
+#carouselExampleInterval {
+    margin-bottom: 20px;
+}
+
+
+/* Product row styling for horizontal scrolling */
+.product-row {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    scrollbar-width: thin; /* For Firefox */
+}
+
+.product-row::-webkit-scrollbar {
+    height: 8px;
+}
+
+.product-row::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.product-row::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Product card styling */
+.productCard {
+    flex: 0 0 auto; /* Make sure the product card doesn't shrink or grow */
+    width: 200px; /* Adjust the width as needed */
+    padding: 10px;
+    margin: 10px;
+    background-color: #f9f9f9; /* Background color for product card */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* Background shadow */
+    position: relative; /* Added position relative */
+    transition: all 0.3s ease; /* Added transition effect */
+    overflow: hidden;
+    
+}
+
+.productCard:hover {
+    transform: scale(1.05); /* Scale up the product card on hover */
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+/* Product image styling */
+.productImage img {
+    width: 100%; /* Adjusted image width to fill the card */
+    height: 100px; /* Adjust height to keep proportions */
+    border-radius: 5px;
+    transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+.productImage:hover img {
+    transform: scale(1.2); /* Zoom in effect on hover */
+}
+
+/* Product details styling */
+.productDetails {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+/* Product name styling */
+.productName {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Price and rating styling */
+.productPrice {
+    margin-bottom: 5px;
+    line-height: 1.5; /* Adjust line height for better spacing */
+    text-align: center; /* Centered price details */
+}
+
+.originalPrice {
+    font-size: 14px;
+    color: #999; /* Color for original price */
+    text-decoration: line-through; /* Cross out original price */
+}
+
+.productRatings {
+    font-size: 14px;
+    color: #ffb23e; /* Color for product ratings */
+    text-align: center; /* Centered ratings */
+}
+
+.priceAndRating {
+    display: flex; /* Changed to flex layout */
+    justify-content: space-between; /* Spaced out price and rating */
+    align-items: center; /* Centered items vertically */
+}
+
+.priceDetails {
+    margin-bottom: 5px; /* Added margin between price details and ratings */
+}
+
+.discountedPrice {
+    color: #3bb143; /* Color for discounted price */
+}
+
+/* Popup styling */
+.popup {
+    display: none; /* Hide popup by default */
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+    top: calc(100% + 10px); /* Position the popup below the product */
+    left: 50%; /* Centered horizontally */
+    transform: translateX(-50%); /* Centered horizontally */
+}
+
+.productCard:hover .popup {
+    display: block; /* Show popup when hovering over product card */
+}
+
+.popupText {
+    color: #333; /* Popup text color */
+    font-size: 14px;
+}
+
+.col-md-4 {
+    margin-bottom: 20px; /* Add some bottom margin */
+}
+
+/* Category section styling */
+.category-section {
+    margin: 20px 0;
+}

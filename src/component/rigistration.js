@@ -1,104 +1,133 @@
 import React, { useState } from "react";
-import { Navigate, Link } from "react-router-dom"; // Make sure you have React Router set up
-import axios from "axios"; // Import Axios
-import "./registerForm.css"; // Import the CSS file
+import { Navigate, Link } from "react-router-dom";
+import axios from "axios";
+import { GoogleLogin } from 'react-google-login';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./registerForm.css";
+import Navbar from "./Navbar";
 
 function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  // Function to handle form submission
-  const handleRegistration = async () => {
+  const handleRegistration = async (event) => {
+    event.preventDefault();  // Prevent default form submission
+
     try {
       if (username.trim() === "" || password.trim() === "" || email.trim() === "") {
-        setErrorMessage("Please fill in all fields.");
+        toast.error("Please fill in all fields.");
         return;
       }
 
-      // Make POST request to backend API
       const response = await axios.post("http://localhost:3500/api/create", {
         username: username,
         password: password,
         email: email,
       });
 
-      // Handle successful registration
       console.log("Registration successful:", response.data);
-      alert("Registered Successfully");
+      toast.success("Registered Successfully");
       setRedirect(true);
     } catch (error) {
-      // Handle registration error
       console.error("Registration failed:", error);
-      setErrorMessage("Registration failed. Please try again.");
+      toast.error("Registration failed. Please try again.");
     }
   };
 
-  // Redirect to login page if registration is successful
+  const responseGoogle = async (response) => {
+    try {
+      const { profileObj: { email, name } } = response;
+
+      const googleResponse = await axios.post("http://localhost:3500/api/create", {
+        username: name,
+        email: email,
+        password: Math.random().toString(36).substring(7)
+      });
+
+      console.log("Registration successful:", googleResponse.data);
+      toast.success("Registered Successfully");
+      setRedirect(true);
+    } catch (error) {
+      console.error("Registration failed:", error);
+      
+    }
+  };
+
   if (redirect) {
     return <Navigate to="/login" />;
   }
 
   return (
-    <div >
-      <nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">MENU</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">MENU</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link " href="*">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">LOGIN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/data">DATA</a>
-                    </li>
-                </ul>
-                
-            </div>
-        </div>
-    </div>
-</nav> <br/><br/>
+    <div className="register-page">
+      <Navbar />
       <div className="row justify-content-center">
+        <div className="col-md-6">
+          <img src="/images/animation.gif" alt="logo" style={{ width: "100%", height: "auto" }} />
+        </div>
         <div className="col-md-6">
           <div className="card">
             <h1 className="card-title">Registration Form</h1>
-            {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
-            <div className="form-group">
-              <label>Username:</label>
-              <input type="text" className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <form onSubmit={handleRegistration}>
+              <div className="form-group">
+                <label>Username:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Password:</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Email:</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required/>
+              <label class="form-check-label" for="myCheck">I agree for all.</label>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Check this checkbox to continue.</div>
             </div>
-            <div className="form-group">
-              <label>Password:</label>
-              <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <div className="form-group">
-              <label>Email:</label>
-              <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div className="text-center">
-              <button type="button" onClick={handleRegistration} className="btn btn-register">
-                REGISTER
-              </button>
-            </div>
+              <div className="text-center">
+                <button type="submit" className="btn btn-register">
+                  REGISTER
+                </button>
+              </div>
+            </form>
             <div className="mt-3 text-center">
-              <p>Already have an account? <Link to="/login">Login</Link></p>
+              <p>Already have an account? <Link style={{ textDecoration: 'none' }} to="/login">Login</Link></p>
+            </div>
+
+            {/* Google OAuth button */}
+            <div className="text-center mt-3">
+              <GoogleLogin
+                clientId="515837469613-i0pf77ctf6339dnomrnui58c1t2i79uv.apps.googleusercontent.com"
+                buttonText="Continue with Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+              />
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

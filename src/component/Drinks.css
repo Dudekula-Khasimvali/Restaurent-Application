@@ -1,0 +1,55 @@
+/* Drinks.css */
+
+/* Carousel styling */
+#carouselExampleInterval {
+    margin-bottom: 20px;
+}
+
+/* Product card styling */
+.productCardDrinks {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    background-color: #f9f9f9; /* Add background color */
+}
+
+.productCardDrinks:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow on hover for depth effect */
+}
+
+/* Product content styling */
+.productContentDrinks {
+    padding: 10px;
+}
+
+/* Product image styling */
+.productImageDrinks img {
+    width: 100%;
+    height: 250px;
+    transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+.productImageDrinks:hover img {
+    transform: scale(1.2); /* Zoom in effect on hover */
+}
+
+/* Product details styling */
+.productDetailsDrinks {
+    margin-top: 10px;
+}
+
+/* Price and rating styling */
+.productPriceDrinks {
+    margin-bottom: 5px;
+}
+
+.originalPriceDrinks {
+    font-size: 16px;
+    color: #333;
+}
+
+.productRatingsDrinks {
+    font-size: 14px;
+    color: #777;
+}

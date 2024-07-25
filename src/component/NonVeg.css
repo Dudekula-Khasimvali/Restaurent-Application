@@ -1,0 +1,82 @@
+.productCard {
+    width: 100%; /* Adjust the width as needed */
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff; /* Background color for product card */
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* Background shadow */
+    position: relative; /* Added position relative */
+    transition: all 0.3s ease; /* Added transition effect */
+}
+
+.productCard:hover {
+    transform: scale(1.05); /* Scale up the product card on hover */
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.productImage img {
+    width: 100%; /* Adjusted image width */
+    height: 150px;
+    border-radius: 5px;
+}
+
+.productName {
+    font-weight: bold; /* Bold product name */
+    margin-top: 10px;
+    text-align: center; /* Centered product name */
+}
+
+.productDetails {
+    padding: 5px;
+}
+
+.priceAndRating {
+    display: flex; /* Changed to flex layout */
+    justify-content: space-between; /* Spaced out price and rating */
+    align-items: center; /* Centered items vertically */
+}
+
+.productPrice {
+    line-height: 1.5; /* Adjust line height for better spacing */
+    text-align: center; /* Centered price details */
+}
+
+.discountedPrice {
+    color: #3bb143; /* Color for discounted price */
+}
+
+.originalPrice {
+    color: #999; /* Color for original price */
+    text-decoration: line-through; /* Cross out original price */
+}
+
+.productRatings {
+    color: #ffb23e; /* Color for product ratings */
+    text-align: center; /* Centered ratings */
+}
+
+.btn-outline-info {
+    padding: 5px 25px; /* Adjust button padding */
+    font-size: 16px; /* Adjust button font size */
+}
+
+.popup {
+    display: none; /* Hide popup by default */
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+    top: calc(100% + 10px); /* Position the popup below the product */
+    left: 50%; /* Centered horizontally */
+    transform: translateX(-50%); /* Centered horizontally */
+}
+
+.productCard:hover .popup {
+    display: block; /* Show popup when hovering over product card */
+}
+
+.popupText {
+    color: #333; /* Popup text color */
+    font-size: 14px;
+}

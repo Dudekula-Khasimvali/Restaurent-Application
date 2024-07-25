@@ -1,0 +1,50 @@
+/* Cart.css */
+
+/* Cart item styling */
+.cartItem {
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  background-color: #f9f9f9; /* Add background color */
+}
+
+.cartItem:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow on hover for depth effect */
+}
+
+/* Cart item content styling */
+.cartItemContent {
+  padding: 10px;
+}
+
+/* Cart item image styling */
+.cartItemImage img {
+  width: 100%;
+  height: 250px;
+  transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+.cartItemImage:hover img {
+  transform: scale(1.2); /* Zoom in effect on hover */
+}
+
+/* Cart item details styling */
+.cartItemDetails {
+  margin-top: 10px;
+}
+
+/* Price and quantity styling */
+.itemPrice {
+  margin-bottom: 5px;
+}
+
+.itemPrice span {
+  font-size: 16px;
+  color: #333;
+}
+
+.itemQuantity {
+  font-size: 14px;
+  color: #777;
+}

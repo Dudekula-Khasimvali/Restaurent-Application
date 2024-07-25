@@ -1,0 +1,52 @@
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: red;
+    height: auto;
+}
+
+.container-fluid {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.navbar-brand img.logo {
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+}
+
+.cart-link {
+    color: #333;
+    display: inline-block;
+}
+
+.cart-link i {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.btn-outline-light {
+    margin-left: auto;
+    margin-right: 10px;
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: transparent;
+    padding: 5px 10px;
+    border-radius: 5px;
+}

@@ -59,4 +59,11 @@
   .label{
     text-decoration: solid;
   }
-  
+
+body {
+  background-color: pink;
+}
+ 
+.register-page {
+  background-color: gray;
+}
