@@ -4,12 +4,14 @@ import { useEffect, useState } from "react"
 import Navbar from "./Navbar";
 import { useCart } from './CartContext'; // Import useCart hook
 import Fotter from "./Fotter";
+import {  useNavigate } from "react-router-dom";
 
 
 function Seafood()
 {
     const[productArray,setProductArray] = useState([])
     const { dispatch } = useCart(); // Get dispatch from context
+    const navigate = useNavigate();
     
     useEffect(() =>{
             Seafood()
@@ -40,8 +42,8 @@ function Seafood()
         return stars;
     };
     
-    const addToCart = (product) => {
-        dispatch({ type: 'ADD_TO_CART', product });
+    const goToDetails = (productId) => {
+        navigate(`/product/${productId}`);
     };
     
     return (
@@ -110,9 +112,10 @@ function Seafood()
                                     </div>
                                 </div>
                             </div>
-                            <div className="buttonContainer">
-                                <button onClick={() => addToCart(product)} className="btn btn-outline-info" > <b >ADD TO CART</b></button>
-                            </div>
+                            <div style={{textAlign:'center'}}>
+                                      <button className="btn btn-outline-info" onClick={() => goToDetails(product.id)}>
+                                      <b>DETAILS</b></button>
+                                      </div>
                             {/* Popup content */}
                             <div className="popup">
                                 <div className="popupContent">

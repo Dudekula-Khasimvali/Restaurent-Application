@@ -80,3 +80,18 @@
     color: #333; /* Popup text color */
     font-size: 14px;
 }
+.carousel-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-image {
+  object-fit: cover;
+  height: 500px;
+}
+
+.row.product-row {
+  margin-left: 0;
+  margin-right: 0;
+}

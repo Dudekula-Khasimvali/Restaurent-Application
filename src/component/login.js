@@ -25,7 +25,15 @@ function LoginPage() {
       if (response.data) {
         if (response.data.password === password) {
           toast.success("Login successful!");
-          setRedirect(true);
+
+          // Save user ID and username to sessionStorage
+          sessionStorage.setItem("USER_ID", response.data.id);
+          sessionStorage.setItem("USERNAME", response.data.username);
+
+          // Delay the redirection to allow the toast to display
+          setTimeout(() => {
+            setRedirect(true);
+          }, 1000); // 2-second delay
         } else {
           toast.error("Incorrect password. Please try again.");
         }
@@ -71,13 +79,9 @@ function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div class="form-check mb-3">
-    <label class="form-check-label">
-      <input class="form-check-input" type="checkbox" name="remember"/> Remember me
-    </label>
-  </div>
+              <div className="form-check mb-3"></div>
               <div className="text-center">
-                <button type="submit" className="btn btn-login">
+                <button type="submit" className="btn-login">
                   Login
                 </button>
               </div>

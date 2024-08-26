@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import './Home.css';
+import './Home.css';  // Ensure this CSS includes the styles mentioned above
 import Navbar from "./Navbar";
 import DiscountCalculator from "./DiscountCalculator";
-import { useCart } from './CartContext'; // Import useCart hook
-import 'react-toastify/dist/ReactToastify.css';
-import { toast } from "react-toastify";
 import Fotter from "./Fotter";
 
 function Home() {
     const [productArray, setProductArray] = useState([]);
-    const { dispatch } = useCart(); // Get dispatch from context
     const navigate = useNavigate();
 
     useEffect(() => {
-        getProductData();
+        getProductData(); // Fetch product data on component mount
     }, []);
 
     function getProductData() {
@@ -41,50 +37,30 @@ function Home() {
         return stars;
     }
 
-    const addToCart = (product) => {
-        // Check if user is logged in
-        const isLoggedIn = true; // Example: Set to true if user is logged in
-
-        if (!isLoggedIn) {
-            // Redirect to login page if user is not logged in
-            navigate("/login");
-        } else {
-            // If user is logged in, add product to cart
-            axios.post("http://localhost:3500/api/cart", { product })
-                .then(() => {
-                    console.log("Product added to cart");
-                    // You can also dispatch action to update context here if needed
-                    dispatch({ type: 'ADD_TO_CART', product });
-                    navigate("/cart");
-                })
-                .catch((error) => {
-                    console.error("Error adding product to cart:", error);
-                    // Show toast error
-                    toast.error("Error adding product to cart");
-                });
-        }
+    const goToDetails = (productId) => {
+        navigate(`/product/${productId}`);
     };
 
     return (
-        <div className="container-fluid" style={{marginTop:'50px'}}>
+        <div className="container-fluid">
             <Navbar />
             <div className="row">
                 <div className="col">
-                    <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel" style={{marginLeft:'-2%' , marginRight:'-5%' ,marginTop:'-3.9%'}}>
-                        <div className="carousel-inner" style={{ borderRadius: "10px" }}>
+                    <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
+                        <div className="carousel-inner">
                             <div className="carousel-item active" data-bs-interval="10000">
                                 <Link to="/seafood">
-                                    <img src="./images/fishfry.webp" className="d-block w-100" height="500" alt="image" loading="lazy" />
+                                    <img src="./images/fishfry.webp" className="d-block w-100" alt="Seafood" />
                                 </Link>
                             </div>
                             <div className="carousel-item" data-bs-interval="2000">
                                 <Link to="/veg">
-                                    <img src="./images/fb.jpg" className="d-block w-100" height="500" alt="image" loading="lazy" />
+                                    <img src="./images/fb.jpg" className="d-block w-100" alt="Vegetarian Dishes" />
                                 </Link>
                             </div>
                             <div className="carousel-item">
                                 <Link to="/nonveg">
-                                    <img src="./images/biryani.webp" className="d-block w-100" height="500" alt="image" loading="lazy" />
+                                    <img src="./images/biryani.webp" className="d-block w-100" alt="Non-Vegetarian Dishes" />
                                 </Link>
                             </div>
                         </div>
@@ -97,16 +73,15 @@ function Home() {
                             <span className="visually-hidden">Next</span>
                         </button>
                     </div>
-                    <div className="row" style={{ marginLeft: '-25px', marginRight: '-20px' }}>
+
+                    <div className="row">
                         {productArray.map((product, index) => (
                             <div className="col-md-2" key={index}>
-                                <div className="productCardDrinks" style={{marginTop:"-6%" , marginLeft:'-1%' , marginRight:"-5%" }}>
+                                <div className="productCardDrinks">
                                     <div className="productContentDrinks">
                                         <div className="productImageDrinks">
                                             <img 
                                                 src={`data:image/jpeg;base64,${product.image}`}
-                                                height={100}
-                                                width={100}
                                                 alt={product.proName}
                                                 loading="lazy"
                                             />
@@ -127,15 +102,17 @@ function Home() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <button className="btn btn-outline-info" onClick={() => addToCart(product)}>
-                                            <b>ADD TO CART</b>
-                                        </button>
+                                      <div style={{textAlign:'center'}}>
+                                      <button className="btn btn-outline-info" onClick={() => goToDetails(product.id)}>
+                                      <b>DETAILS</b></button>
+                                      </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
-                    <Fotter/>
+                    <Fotter />
                 </div>
             </div>
         </div>

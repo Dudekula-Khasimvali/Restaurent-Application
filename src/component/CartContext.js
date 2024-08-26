@@ -1,6 +1,6 @@
+// CartContext.js
 import React, { createContext, useReducer, useContext } from 'react';
 
-// Create context
 const CartContext = createContext();
 
 const cartReducer = (state, action) => {
@@ -14,7 +14,8 @@ const cartReducer = (state, action) => {
     }
 };
 
-// Provider component
+export const useCart = () => useContext(CartContext);
+
 export const CartProvider = ({ children }) => {
     const [cart, dispatch] = useReducer(cartReducer, []);
 
@@ -23,9 +24,4 @@ export const CartProvider = ({ children }) => {
             {children}
         </CartContext.Provider>
     );
-};
-
-// Hook to use cart context
-export const useCart = () => {
-    return useContext(CartContext);
 };

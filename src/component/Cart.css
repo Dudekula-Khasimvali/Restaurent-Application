@@ -1,50 +1,149 @@
-/* Cart.css */
+/* Container for the entire cart page */
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #0e0e0e;
+  margin-top: 50px;
+}
 
-/* Cart item styling */
-.cartItem {
-  border: 1px solid #ccc;
+.promo-code{
+  text-decoration: none;
+  transform: text-decoration 0.3s ease;
+}
+.promo-code:hover{
+  text-decoration: underline;
+}
+/* Navbar margin */
+.navbar {
   margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-  background-color: #f9f9f9; /* Add background color */
 }
 
-.cartItem:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow on hover for depth effect */
-}
-
-/* Cart item content styling */
-.cartItemContent {
-  padding: 10px;
-}
-
-/* Cart item image styling */
-.cartItemImage img {
+/* Content layout with cart items and order summary */
+.cart-content {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  height: 250px;
-  transition: transform 0.3s ease; /* Add transition for smooth effect */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #0e0e0e;
+  flex-grow: 1; /* Ensure it takes up available vertical space */
 }
 
-.cartItemImage:hover img {
-  transform: scale(1.2); /* Zoom in effect on hover */
+/* Cart items section */
+.cart-items {
+  flex: 2; /* Take up 2/3rd of the width */
+  margin-left: -100px;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
 }
 
-/* Cart item details styling */
-.cartItemDetails {
-  margin-top: 10px;
+.cart-items h2 {
+  font-size: 24px;
+  color: white;
+  margin-bottom: 20px;
 }
 
-/* Price and quantity styling */
-.itemPrice {
-  margin-bottom: 5px;
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #444;
 }
 
-.itemPrice span {
+.item-details {
+  display: flex;
+  align-items: center;
+}
+
+.item-total{
+  color: white;
+}
+
+.quantity-btn{
+  background-color: gray;
+  border-radius: 10px;
+  color: white;
+}
+
+.remove-btn{
+  background-color: red;
+}
+.order-btn{
+  background-color: green;
+}
+.item-info {
+  margin-left: 15px;
+  color: white;
+}
+
+.item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Order summary section */
+.order-summary {
+  flex: 1; /* Take up 1/3rd of the width */
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.order-summary h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.total-row {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.checkout-btn {
+  background-color: #8c52ff;
+  color: white;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   font-size: 16px;
-  color: #333;
+  margin-top: 20px;
 }
 
-.itemQuantity {
-  font-size: 14px;
-  color: #777;
+.checkout-btn:hover {
+  background-color: #7a46e0;
+}
+
+/* Footer */
+.footer-container {
+  background-color: #1e1e1e;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #444;
+  margin-top: auto; /* Ensures the footer sticks to the bottom if the content is short */
+}
+
+/* Additional Layout Adjustments */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
